@@ -18,13 +18,17 @@ If seed data is provided (or you already created it), you can skip this step.
 
 -- (RESTART IDENTITY resets the primary key)
 
-TRUNCATE TABLE albums RESTART IDENTITY; -- replace with your own table name.
+TRUNCATE TABLE artists RESTART IDENTITY; -- replace with your own table name.
 
 -- Below this line there should only be `INSERT` statements.
+
 -- Replace these statements with your own seed data.
 
-INSERT INTO albums (name, genre) VALUES ('Lizzo', 'Pop');
-INSERT INTO albums (name, genre) VALUES ('Beyonce', 'Pop');
+INSERT INTO artists (name, genre) VALUES ('Lizzo', 'Pop');
+INSERT INTO artists (name, genre) VALUES ('Beyonce', 'Pop');
+INSERT INTO artists (name, genre) VALUES ('Pat Benatar', 'Rock')
+INSERT INTO artists (name, genre) VALUES ('Alicia Keys', 'R&B')
+
 
 
 Run this SQL file on the database to truncate (empty) the table, and insert the seed data. Be mindful of the fact any existing records in the table will be deleted.
@@ -97,6 +101,15 @@ class ArtistRepository
 
     # Returns an array of Artist objects.
   end
+
+   # select a single method 
+   # given the id in an argument(a number)
+  def find(id)
+    # executes the SQL query: 
+    # SELECT id, name, genre FROM artists WHERE id = $1
+
+    # returns a single artist 
+  end 
 end
 ```
 
@@ -118,6 +131,27 @@ artists = repo.all
 artists.length # => 2
 artists.first.id # => 1 
 artists.first.name # => 'Lizzo'
+
+
+# 2
+# get a single artist
+
+repo = ArtistRepository.new
+
+artist = repo.find(1)
+artist.name # => 'Lizzo'
+aritst.genre # => 'Pop' 
+
+# 3
+# get a single artist
+
+repo = ArtistRepository.new
+
+artist = repo.find(3)
+artist.name # => 'Pat Benatar'
+aritst.genre # => 'Rock' 
+
+
 
 # Add more examples for each method
 Encode this example as a test.

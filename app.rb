@@ -14,14 +14,33 @@ DatabaseConnection.connect('music_library')
 #   p record
 # end
 
+
+#sql = 'SELECT id, title, author_name FROM books'
+
+# fill in params above
+
+#result = DatabaseConnection.exec_params(sql, [])
+
+
 artist_repository = ArtistRepository.new
-
-artist_repository.all.each do |artist| 
-  p artist
-end 
-
 album_repository = AlbumRepository.new
 
-album_repository.all.each do |album|
-  p album
-end 
+
+# artist_repository.all.each do |artist| 
+#   puts "#{artist.id} - #{artist.name} - #{artist.genre}"
+# end
+
+# album_repository.all.each do |album|
+#   p album
+# end 
+
+artist = artist_repository.find(4)
+
+puts "Found artist:\n#{artist.id} - #{artist.name} - #{artist.genre}\n
+"
+
+
+album = album_repository.find(3)
+
+puts "Found album:\n#{album.id} - #{album.title} - #{album.release_year} - #{album.artist_id}\n
+"

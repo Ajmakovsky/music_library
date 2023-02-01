@@ -15,5 +15,7 @@ TRUNCATE TABLE artists RESTART IDENTITY; -- replace with your own table name.
 
 INSERT INTO artists (name, genre) VALUES ('Lizzo', 'Pop');
 INSERT INTO artists (name, genre) VALUES ('Beyonce', 'Pop');
+INSERT INTO artists (name, genre) VALUES ('Pat Benatar', 'Rock');
+INSERT INTO artists (name, genre) VALUES ('Alicia Keys', 'R&B');
 
 

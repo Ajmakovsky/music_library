@@ -25,6 +25,8 @@ TRUNCATE TABLE albums RESTART IDENTITY; -- replace with your own table name.
 
 INSERT INTO albums (title, release_year, artist_id) VALUES ('Cuz I Love You', '2019', '1');
 INSERT INTO albums (title, release_year, artist_id) VALUES ('Lemonade', '2016', '2');
+INSERT INTO albums (title, release_year, artist_id) VALUES ('In the Heat of the Night', '1979', '3');
+INSERT INTO albums (title, release_year, artist_id) VALUES ('Girl on Fire', '2012', '4');
 
 
 Run this SQL file on the database to truncate (empty) the table, and insert the seed data. Be mindful of the fact any existing records in the table will be deleted.
@@ -99,6 +101,13 @@ class StudentRepository
 
     # Returns an array of Album objects.
   end
+
+  def find(id)
+    # executes the SQL query: 
+    # SELECT id, title, release_year and artist_id FROM albums WHEN id = $1; 
+
+    #returns a single album 
+  end 
 end
 
 ```
@@ -123,7 +132,28 @@ albums.first.id => "1"
 albums.first.title => "Cuz I Love You"
 albums.first.release_year => "2019"
 
+# 2
+# get a single album 
+
+repo = AlbumRepository.new
+
+album = repo.find(1)
+album.title # => 'Cuz I Love You'
+album.release_year # => '2019' 
+
+# 3
+# get a single album
+
+repo = AlbumRepository.new
+
+album = repo.find(3)
+album.title # => 'In the Heat of the Night'
+album.release_year # => '1979' 
+album.artist_id # => '3'
+
+
 ```
+
 
 
 7. Reload the SQL seeds before each test run
