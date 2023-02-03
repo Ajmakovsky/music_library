@@ -108,6 +108,13 @@ class StudentRepository
 
     #returns a single album 
   end 
+
+  def create(album)
+    # executes the SQL query: 
+    # INSERT INTO artists (name, genre) VALUES($1, $2);
+
+    # returns nothing 
+  end
 end
 
 ```
@@ -151,6 +158,22 @@ album.title # => 'In the Heat of the Night'
 album.release_year # => '1979' 
 album.artist_id # => '3'
 
+# 4
+# Create a new album
+
+repo = AlbumRepository.new
+
+album = Album.new
+album.name = 'Man on the Moon: The End of Day'
+album.genre = '2009'
+
+repo.create(album) => nil
+
+albums =  repo.all 
+
+last_album = album.last 
+last_album.name # => 'Man on the Moon: The End of Day'
+last_album.genre # => '2009'
 
 ```
 

@@ -41,5 +41,24 @@ describe AlbumRepository do
       expect(album.release_year).to eq '1979'
       expect(album.artist_id).to eq '3' 
     end 
+
+    it 'creates a new album' do 
+      repo = AlbumRepository.new
+
+      album = Album.new
+      album.title = 'Man on the Moon: The End of Day'
+      album.release_year = '2009'
+      album.artist_id = '6'
+
+      repo.create(album)
+
+      albums = repo.all 
+
+      last_album = albums.last 
+      expect(last_album.title).to eq 'Man on the Moon: The End of Day'
+      expect(last_album.release_year).to eq '2009'
+      expect(last_album.artist_id).to eq '6'
+
+    end 
   end 
 end 
